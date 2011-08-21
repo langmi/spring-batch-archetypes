@@ -13,44 +13,43 @@
      See the License for the specific language governing permissions and
      limitations under the License.
  -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <prerequisites>
+        <maven>3.+</maven>
+    </prerequisites>      
+
     <modelVersion>4.0.0</modelVersion>
-    <groupId>de.langmi.spring.batch.templates</groupId>
+
+    <groupId>de.langmi.spring.batch.archetypes</groupId>
     <artifactId>in-memory</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>Archetype - in-memory</name>
-    <url>https://github.com/langmi/spring-batch-archetypes</url>
+    <packaging>maven-archetype</packaging>
+
+    <name>in-memory</name>
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.jdk>1.6</maven.jdk>
-        <maven.compiler.debug>false</maven.compiler.debug>
-        <maven.compiler.optimize>false</maven.compiler.optimize>        
     </properties>
-    
+
     <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-                <configuration>
-                    <source>${maven.jdk}</source>
-                    <target>${maven.jdk}</target>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                    <debug>${maven.compiler.debug}</debug>
-                    <optimize>${maven.compiler.optimize}</optimize>
-                    <showDeprecation>true</showDeprecation>
-                </configuration>
-            </plugin>    
-            <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.5</version>
-                <configuration>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                </configuration>
-            </plugin>
-        </plugins>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.archetype</groupId>
+                <artifactId>archetype-packaging</artifactId>
+                <version>2.0</version>
+            </extension>
+        </extensions>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-archetype-plugin</artifactId>
+                    <version>2.0</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
-    
 </project>
