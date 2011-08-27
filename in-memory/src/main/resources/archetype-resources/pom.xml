@@ -28,7 +28,7 @@
 
     <name>${artifactId}</name>
     <url>https://github.com/langmi/spring-batch-templates</url>
-    <description>Spring Batch Templates: in-memory</description>
+    <description>TODO: Change me!</description>
 
 
     <properties>

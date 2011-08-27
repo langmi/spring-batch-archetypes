@@ -22,7 +22,7 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
     <description>
-        Change me!
+        TODO: Change me!
     </description>
     <!-- 
         inline xmlns, otherwise it would look like 
