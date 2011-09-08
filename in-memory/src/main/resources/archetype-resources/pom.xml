@@ -27,7 +27,7 @@
     <packaging>jar</packaging>
 
     <name>${artifactId}</name>
-    <url>https://github.com/langmi/spring-batch-templates</url>
+    <url>http://change.me.com</url>
     <description>TODO: Change me!</description>
 
 
