@@ -72,6 +72,7 @@
             <plugins>
                 <plugin>
                     <artifactId>maven-archetype-plugin</artifactId>
+                    <!-- 20110918: 2.1 Version available, but not working -->                    
                     <version>2.0</version>
                 </plugin>
             </plugins>
