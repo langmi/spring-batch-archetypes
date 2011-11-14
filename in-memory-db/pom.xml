@@ -13,7 +13,11 @@
      See the License for the specific language governing permissions and
      limitations under the License.
  -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project 
+    xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.langmi.spring.batch.archetypes</groupId>
@@ -23,7 +27,16 @@
 
     <name>in-memory-db</name>
     <url>https://github.com/langmi/spring-batch-archetypes</url>
-    <description>Spring Batch Archetype - simple template with in-memory-db</description>
+
+    <description>
+        Spring Batch Archetype - simple template with in-memory-db
+        This projects needs:
+        
+        * Java 1.6+
+        * Maven 3+
+        
+        see maven-enforcer-plugin configuration.
+    </description>
     
     <licenses>
         <license>
@@ -31,11 +44,12 @@
             <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
             <distribution>manual</distribution>
             <comments>
-                Choosed 'manual' distribution, because there are no plans 
+                Declared 'manual' distribution, because there are no plans 
                 to upload the project to a maven repository.
             </comments>
         </license>
     </licenses>
+
     <developers>
         <developer>
             <id>michael</id>
@@ -51,34 +65,86 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.java.version>1.6</project.java.version>
     </properties>
 
     <build>
         <extensions>
+                <!-- 
+                    provides maven-archetype-plugin bindings to default lifecycle
+                    see http://maven.apache.org/archetype/archetype-packaging/
+                -->
             <extension>
                 <groupId>org.apache.maven.archetype</groupId>
                 <artifactId>archetype-packaging</artifactId>
                 <version>2.0</version>
             </extension>
         </extensions>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <artifactId>maven-archetype-plugin</artifactId>
-                    <!-- 20110918: 2.1 Version available, but not working -->
-                    <version>2.0</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-archetype-plugin</artifactId>
+                    <!-- 20110918: 2.1 Version available, but not working -->
+                <version>2.0</version>
+            </plugin>
+            <plugin>
+                <!-- maven-compiler-plugin configured to:
+                        * use specific Java Version
+                        * use specific target Java Version
+                        * use UTF-8 for java sources
+                        * use debug compiler settings
+                        * do not use optimize compiler settings
+                        * show deprecated informations (will build anyhow)
+                -->
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>${project.java.version}</source>
+                    <target>${project.java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <debug>false</debug>
+                    <optimize>true</optimize>
+                    <showDeprecation>true</showDeprecation>
                 </configuration>
+            </plugin>    
+            <plugin>
+                <!-- maven-resources-plugin configured to treat
+                     all resources as UTF-8 format
+                -->
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!-- 
+                    With the maven-enforcer-plugin i want to make sure
+                    the project is built with maven 3+ and Java 1.6+.
+                    
+                    right now the plugin reads the version as lowest allowed, 
+                    so there is no need to use fancy formats like: [3.0,)
+                    see http://maven.apache.org/plugins/maven-enforcer-plugin/rules/versionRanges.html
+                -->
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>1.0.1</version>
+                <executions>
+                    <execution>
+                        <id>enforce-maven</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireJavaVersion>
+                                    <version>${project.java.version}</version>
+                                </requireJavaVersion>
+                                <requireMavenVersion>
+                                    <version>3.0.0</version>
+                                </requireMavenVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
