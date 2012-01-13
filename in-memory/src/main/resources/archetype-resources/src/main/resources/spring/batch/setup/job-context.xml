@@ -34,10 +34,11 @@
 	
     <bean id="jobRepository" class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean">
         <property name="transactionManager" ref="transactionManager"/>
-    </bean>    
-    <!-- provides step scope -->
-    <bean class="org.springframework.batch.core.scope.StepScope" />
-    
+    </bean>
+        
     <bean id="transactionManager" class="org.springframework.batch.support.transaction.ResourcelessTransactionManager" />
+    
+    <!-- provides step scope, not needed, existence of xmlns for spring batch is enough -->
+    <!--<bean class="org.springframework.batch.core.scope.StepScope" />-->
     
 </beans>
